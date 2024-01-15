@@ -12,22 +12,30 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   double opacityLevel = 0.0;
-  double _scale = 0.5;
+  double _scale = 0.0;
 
   void changeOpacity() {
     setState((){
-       _scale += 0.2;
+       _scale =_scale+ 0.05;
        opacityLevel += 0.2;
     } );
+    print(_scale);
+    if(_scale < 1){
+       Future.delayed(Duration(milliseconds: 40), () {
+      changeOpacity();
+    });
+    }else{
+      return;
+    }
   }
 
   @override
   void initState() {
     super.initState();
     changeOpacity();
-    Future.delayed(Duration(seconds: 1), () {
-      changeOpacity();
-    });
+    // Future.delayed(Duration(seconds: 1), () {
+    //   changeOpacity();
+    // });
     _loadDataAndNavigate();
   }
 
@@ -35,13 +43,14 @@ class _SplashScreenState extends State<SplashScreen> {
     // Load data or perform any async tasks
 
     // After loading, navigate to the next screen
-    Future.delayed(Duration(seconds: 12), () {
+    Future.delayed(Duration(seconds: 7), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => WebViewPage()),
       );
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,18 +68,13 @@ class _SplashScreenState extends State<SplashScreen> {
               Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Center(
-                      child: AnimatedOpacity(
-                    opacity: opacityLevel,
-                      curve: Curves.bounceIn,
-                    duration: Duration(seconds: 8),
-                    child: Transform.scale(
-                       scale: _scale,
-                      child: Image.asset(
-                        "assets/img/main logo.PNG",
-                        // fit: BoxFit.cover,
-                      ),
-                    ),
-                  )))
+                      child: Transform.scale(
+                         scale: _scale,
+                        child: Image.asset(
+                          "assets/img/main logo.PNG",
+                          // fit: BoxFit.cover,
+                        ),
+                      )))
               //  Center(
               //   child: AnimatedOpacity(
               //       opacity: opacityLevel,
