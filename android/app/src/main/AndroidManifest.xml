@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.treand_app">
+    package="com.treand_app">
      <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
    <application
         android:label="XTRENDZ"
         android:name="${applicationName}"

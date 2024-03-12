@@ -1,4 +1,4 @@
-package com.example.treand_app
+package com.treand_app
 
 import io.flutter.embedding.android.FlutterActivity
 
